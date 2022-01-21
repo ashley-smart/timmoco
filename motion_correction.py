@@ -25,7 +25,9 @@ ch1 = registration.get_ants_brain(file_base_path + '_channel_1.nii', metadata, c
 print('Loaded {}, shape={}'.format(file_base_path + '_channel_1.nii', ch1.shape))
 
 # Register channel 1 to reference image drawn from first x frames
-merged = registration.registerOneChannelToSelf(ch1, spatial_dims=len(ch1.shape) - 1, reference_frames=20)
+#merged = registration.registerOneChannelToSelf(ch1, spatial_dims=len(ch1.shape) - 1, reference_frames=20)
+# register two channels to red
+merged = registration.register_two_channels_to_red(ch1, spatial_dims=len(ch1.shape) - 1, reference_frames=20)
 
 # Save registered, merged .nii
 nifti1_limit = (2**16 / 2)
