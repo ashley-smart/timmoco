@@ -12,6 +12,6 @@
 module use /home/groups/trc/modules
 module load antspy/0.2.2
 
-python3 /home/users/currier/tac_analysis/scripts/motion_correction.py /oak/stanford/groups/trc/data/Tim/ImagingData/processed/20210824/TSeries-20210824-001
+python3 /home/users/asmart/projects/timmoco/motion_correction.py /oak/stanford/groups/trc/data/Tim/ImagingData/processed/20210824/TSeries-20210824-001
 
-python3 /home/users/currier/tac_analysis/scripts/motion_correction.py /oak/stanford/groups/trc/data/Tim/ImagingData/processed/20210824/TSeries-20210824-002
+python3 /home/users/asmart/projects/timmoco/motion_correction.py /oak/stanford/groups/trc/data/Tim/ImagingData/processed/20210824/TSeries-20210824-002
