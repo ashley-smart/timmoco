@@ -19,7 +19,7 @@ file_base_path = sys.argv[1]
 print('Registering brain file from {}'.format(file_base_path))
 
 # Load metadata from bruker .xml file
-metadata_path = os.path.join([file_base_path, os.path.split(file_base_path)[1] + '.xml']) 
+metadata_path = os.path.join(file_base_path, os.path.split(file_base_path)[1] + '.xml') 
 # the os.path.split returns a tuple with everything in filepath in first set and then last component in second part
 metadata = registration.get_bruker_metadata(metadata_path)
 print('Loaded metadata from {}'.format(metadata_path))
