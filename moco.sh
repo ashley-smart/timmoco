@@ -6,7 +6,7 @@
 #SBATCH --time=96:00:00
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --output=/home/users/asmart/timmoco/logs/%x.%j.out
+#SBATCH --output=/home/users/asmart/projects/timmoco/logs/%x.%j.out
 #SBATCH --open-mode=append
 
 module use /home/groups/trc/modules
