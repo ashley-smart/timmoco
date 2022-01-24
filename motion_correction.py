@@ -17,8 +17,7 @@ file_base_path = sys.argv[1]
 print('Registering brain file from {}'.format(file_base_path))
 
 # Load metadata from bruker .xml file
-#metadata = registration.get_bruker_metadata(file_base_path + '.xml')
-metadata = registration.get_bruker_metadata(file_base_path + '/' + file_base_path + '.xml')
+metadata = registration.get_bruker_metadata(file_base_path + '.xml')
 print('Loaded metadata from {}'.format(file_base_path + '/' + file_base_path + '.xml'))
 
 # Load brain images
