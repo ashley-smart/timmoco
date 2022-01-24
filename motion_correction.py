@@ -21,8 +21,8 @@ metadata = registration.get_bruker_metadata(file_base_path + '.xml')
 print('Loaded metadata from {}'.format(file_base_path + '.xml'))
 
 # Load brain images
-ch1 = registration.get_ants_brain(file_base_path + '_channel_1.nii', metadata, channel=0)
-print('Loaded {}, shape={}'.format(file_base_path + '_channel_1.nii', ch1.shape))
+ch1 = registration.get_ants_brain(file_base_path + 'ch1_stitched.nii', metadata, channel=0)
+print('Loaded {}, shape={}'.format(file_base_path + 'ch1_stitched.nii', ch1.shape))
 
 # Register channel 1 to reference image drawn from first x frames
 #merged = registration.registerOneChannelToSelf(ch1, spatial_dims=len(ch1.shape) - 1, reference_frames=20)
