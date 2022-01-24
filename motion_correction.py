@@ -3,6 +3,7 @@ Motion correction script modified by TAC, original author MHT
 
 For use with single-channel volumetric timeseries (i.e GCaMP only)
 """
+import os
 import sys
 import time
 import nibabel as nib
@@ -14,11 +15,14 @@ t0 = time.time()
 # first arg: path to image series base, without .suffix
 #   e.g. /oak/stanford/groups/trc/data/Max/ImagingData/Bruker/20210611/TSeries-20210611-001
 file_base_path = sys.argv[1]
+
 print('Registering brain file from {}'.format(file_base_path))
 
 # Load metadata from bruker .xml file
-metadata = registration.get_bruker_metadata(file_base_path + '.xml')
-print('Loaded metadata from {}'.format(file_base_path + '.xml'))
+metadata_path = os.path.join([file_base_path, os.path.split(file_base_path)[1] + '.xml']) 
+# the os.path.split returns a tuple with everything in filepath in first set and then last component in second part
+metadata = registration.get_bruker_metadata(metadata_path)
+print('Loaded metadata from {}'.format(metadata_path))
 
 # Load brain images
 ch1 = registration.get_ants_brain(file_base_path + 'ch1_stitched.nii', metadata, channel=0)
