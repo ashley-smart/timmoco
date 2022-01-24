@@ -28,10 +28,12 @@ metadata = registration.get_bruker_metadata(metadata_path)
 print('Loaded metadata from {}'.format(metadata_path))
 
 # Load brain images
-ch1 = registration.get_ants_brain(file_base_path + 'ch1_stitched.nii', metadata, channel=0)
-print('Loaded {}, shape={}'.format(file_base_path + 'ch1_stitched.nii', ch1.shape))
-ch2 = registration.get_ants_brain(file_base_path + 'ch2_stitched.nii', metadata, channel=0)
-print('Loaded {}, shape={}'.format(file_base_path + 'ch2_stitched.nii', ch2.shape))
+ch1_brain_path = os.path.join(file_base_path, 'ch1_stitched.nii')
+ch1_brain_path = os.path.join(file_base_path, 'ch1_stitched.nii')
+ch1 = registration.get_ants_brain(ch1_brain_path, metadata, channel=0)
+print('Loaded {}, shape={}'.format(ch1_brain_path, ch1.shape))
+ch2 = registration.get_ants_brain(ch2_brain_path, metadata, channel=0)
+print('Loaded {}, shape={}'.format(ch2_brain_path, ch2.shape))
 
 # Register both channels to channel 1
 merged = registration.register_two_channels_to_red(ch1, ch2, spatial_dims=len(ch1.shape) - 1)
@@ -43,8 +45,9 @@ merged = registration.register_two_channels_to_red(ch1, ch2, spatial_dims=len(ch
 
 # Save registered, merged .nii
 nifti1_limit = (2**16 / 2)
+save_path = os.path.join(file_base_path, last_dir + '_reg.nii')
 if np.any(np.array(merged.shape) >= nifti1_limit): # Need to save as nifti2
-    nib.save(nib.Nifti2Image(merged, np.eye(4)), file_base_path + '_reg.nii')
+    nib.save(nib.Nifti2Image(merged, np.eye(4)), save_path)
 else: # Nifti1 is OK
     nib.save(nib.Nifti1Image(merged, np.eye(4)), file_base_path + '_reg.nii')
-print('Saved registered brain to {}. Total time = {:.1f}'.format(file_base_path + '_reg.nii', time.time()-t0))
+print('Saved registered brain to {}. Total time = {:.1f}'.format(save_path, time.time()-t0))
