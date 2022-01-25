@@ -20,10 +20,12 @@ print('Registering brain file from {}'.format(file_base_path))
 
 # Load metadata from bruker .xml file
 previous_dirs, last_dir = os.path.split(file_base_path)
+# the os.path.split returns a tuple with everything in filepath in first set and then last component in second part, 
+#but if last element is / then it returns nothing in second part of tuple
 if not last_dir:
     previous_dirs, last_dir = os.path.split(previous_dirs)
 metadata_path = os.path.join(file_base_path, last_dir + '.xml') 
-# the os.path.split returns a tuple with everything in filepath in first set and then last component in second part
+
 metadata = registration.get_bruker_metadata(metadata_path)
 print('Loaded metadata from {}'.format(metadata_path))
 
