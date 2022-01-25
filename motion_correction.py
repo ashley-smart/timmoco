@@ -38,12 +38,11 @@ ch2 = registration.get_ants_brain(ch2_brain_path, metadata, channel=0)
 print('Loaded {}, shape={}'.format(ch2_brain_path, ch2.shape))
 
 # Register both channels to channel 1
-merged = registration.register_two_channels_to_red(ch1, ch2, spatial_dims=len(ch1.shape) - 1)
+merged = registration.registerToReferenceChannel_FilterTransforms(ch1, ch2, spatial_dims=len(ch1.shape) - 1)
 
 # Register channel 1 to reference image drawn from first x frames
 #merged = registration.registerOneChannelToSelf(ch1, spatial_dims=len(ch1.shape) - 1, reference_frames=20)
-# # register two channels to red --this may be wrong
-# merged = registration.register_two_channels_to_red(ch1, spatial_dims=len(ch1.shape) - 1, reference_frames=20)
+
 
 # Save registered, merged .nii
 nifti1_limit = (2**16 / 2)
